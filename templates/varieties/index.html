@@ -1,0 +1,152 @@
+{% extends "varieties/base.html" %}
+{% load static %}
+{% block page_heading %}{% endblock %}
+{% block title %}Множества в дискретной математике{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'varieties/main.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" id="binary_relationships_tab" data-toggle="tab" href="#binary_relationships"
+               role="tab"
+               aria-controls="binary_relationships" aria-selected="true" data-operation="binary"
+
+               data-operation-type="menu">Бинарные отношения</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="properties_tab" data-toggle="tab" href="#properties" role="tab"
+               aria-controls="properties"
+               aria-selected="true" data-operation="properties" data-operation-type="menu">Свойства отношения</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="truth_table_tab" data-toggle="tab" href="#truth_table" role="tab"
+               aria-controls="truth_table"
+               aria-selected="true" data-operation="truth_table" data-operation-type="menu">Таблица истинности</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="tabContent">
+
+        <div id="binary_relationships" class="task-input tab-pane show active" role="tabpanel"
+             aria-labelledby="binary-relationships-tab">
+            <div class="task-input">
+                <span>Множества</span>
+                <div class="task-input-group">
+                    <div class="form-group user-inputs">
+                        <input type="text" class="varieties-input" value="1">
+                        <input type="text" class="varieties-input" value="2">
+                        <input type="text" class="varieties-input" value="3">
+                        <a class="add-field"><i class="material-icons md-36">add_box</i></a>
+                    </div>
+                </div>
+                <div class="task-input-group">
+                    <div class="form-group user-inputs">
+                        <input type="text" class="varieties-input" value="2">
+                        <input type="text" class="varieties-input" value="3">
+                        <input type="text" class="varieties-input" value="4">
+                        <a class="add-field"><i class="material-icons md-36">add_box</i></a>
+                    </div>
+                </div>
+                <span>Добавить множество</span>
+                <a class="add-line"><i class="material-icons md-36">add_box</i></a>
+            </div>
+
+            <ul class="nav nav-tabs" id="binary_operations">
+                <li class="nav-item">
+                    <a class="nav-link active" data-operation="union" data-operation-type="binary" data-toggle="tab"
+                       role="tab"
+                       aria-controls="intersection" aria-selected="true">Объединение</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-operation="intersection" data-operation-type="binary" data-toggle="tab"
+                       role="tab"
+                       aria-controls="intersection" aria-selected="false">Пересечение</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-operation="difference" data-operation-type="binary" data-toggle="tab"
+                       role="tab"
+                       aria-controls="intersection" aria-selected="false">Разность</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-operation="symmetric_difference" data-operation-type="binary"
+                       data-toggle="tab" role="tab"
+                       aria-controls="intersection" aria-selected="false">Симметрическая разность</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-operation="addition" data-operation-type="binary" data-toggle="tab"
+                       role="tab"
+                       aria-controls="intersection" aria-selected="false">Дополнение</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-operation="cartesian_product" data-operation-type="binary"
+                       data-toggle="tab" role="tab"
+                       aria-controls="intersection" aria-selected="false">Декартово произведение</a>
+                </li>
+            </ul>
+
+            <div class="task-output">
+
+            </div>
+
+        </div>
+
+
+        <div id="properties" class="task-input tab-pane fade" role="tabpanel"
+             aria-labelledby="binary-relationships-tab">
+            <div class="task-input">
+                <span>Множество</span>
+                <div class="task-input-group">
+                    <div class="form-group user-inputs">
+                        <input type="text" class="varieties-input" value="1">
+                        <input type="text" class="varieties-input" value="2">
+                        <input type="text" class="varieties-input" value="3">
+                        <a class="add-field"><i class="material-icons md-36">add_box</i></a>
+                    </div>
+                </div>
+                <span>Бинарное отношение</span>
+                <div class="task-input-group">
+                    <div class="form-group user-inputs">
+                        <input type="text" class="varieties-input" value="1">
+                        <input type="text" class="varieties-input" value="1">
+                        <a class="add-field"><i class="material-icons md-36">add_box</i></a>
+                    </div>
+                    <div class="form-group user-inputs">
+                        <input type="text" class="varieties-input" value="2">
+                        <input type="text" class="varieties-input" value="2">
+                        <a class="add-field"><i class="material-icons md-36">add_box</i></a>
+                    </div>
+                    <div class="form-group user-inputs">
+                        <input type="text" class="varieties-input" value="3">
+                        <input type="text" class="varieties-input" value="3">
+                        <a class="add-field"><i class="material-icons md-36">add_box</i></a>
+                    </div>
+                </div>
+                <span>Добавить элемент</span>
+                <a class="add-line"><i class="material-icons md-36">add_box</i></a>
+            </div>
+
+            <hr>
+
+            <div class="task-output"></div>
+        </div>
+
+        <div id="truth_table" class="task-input tab-pane fade" role="tabpanel">
+            <div class="task-input">
+                <div class="task-input-group center">
+                    <div class="form-group user-inputs">
+                        <input type="text" id="formula" value="xnor(xor(x, and(y, not(z))), or(and(x, not(z)), y))">
+                        <span id="formula_present" class="formula"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-output"></div>
+        </div>
+
+        <!--- END #tab-content -->
+    </div>
+{% endblock %}
+

@@ -1,0 +1,92 @@
+body {
+    background-color: #f5f5f5;
+}
+
+.task-input, .task-output {
+    margin: 20px;
+}
+
+.task-output > button {
+    margin-right: 10px;
+}
+
+.varieties-input {
+    width: 80px;
+}
+
+.user-inputs {
+    display: table;
+}
+
+i {
+    display: table-cell;
+    vertical-align: middle;
+    padding-bottom: 4px;
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.nav-link, .add-field, .add-line {
+    cursor: pointer;
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+.task-output .form-group {
+    width: 50%;
+    display: inline-block;
+}
+
+#properties .task-output {
+    max-width: 800px;
+}
+
+.center {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.center .user-inputs {
+    width: 100%;
+}
+
+.center input {
+    width: 100%;
+}
+
+.formula {
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.truth-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+.truth-table tbody td, .truth-table thead th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tooltip {
+    white-space: nowrap;
+}

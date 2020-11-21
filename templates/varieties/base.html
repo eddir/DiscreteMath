@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Дискретная математика{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <link href="{% static 'varieties/base.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+{% bootstrap_messages %}
+
+<nav class="navbar navbar-light bg-success">
+    <a class="navbar-brand text-light font-weight-bold" href="#">Дискретная математика</a>
+</nav>
+
+{% block content %}{% endblock %}
+
+{% block js %}{% endblock %}
+</body>
+</html>
