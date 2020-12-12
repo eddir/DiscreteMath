@@ -176,3 +176,7 @@ def logic_xor(left, right):
 
 def logic_xnor(left, right):
     return left == right
+
+
+def logic_impl(left, right):
+    return not left or right

@@ -124,7 +124,7 @@ function parseOperation(formula, parentOperator = null) {
     let part;
     let brackets = 0;
 
-    let operations = ["not", "and", "or", "xor", "nand", "nor", "xnor"];
+    let operations = ["not", "and", "or", "xor", "nand", "nor", "xnor", "impl"];
     let symbols = {
         "not": "¬",
         "and": "∧",
@@ -132,7 +132,8 @@ function parseOperation(formula, parentOperator = null) {
         "nand": "|",
         "xor": "⊕",
         "nor": "↓",
-        "xnor": "↔"
+        "xnor": "↔",
+        "impl": "→"
     }
 
     let leftOperand, rightOperand, commaPosition = 0, lastBracketPosition = 0;

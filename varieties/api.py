@@ -172,7 +172,8 @@ def evaluate(expression, predicates, lines):
 
 def calculate(expression, predicates, lines):
     table = {
-        "title": expression['transcript'][1:-1] if expression['transcript'][0] == '(' else expression['transcript'],
+        # "title": expression['transcript'][1:-1] if expression['transcript'][0] == '(' else expression['transcript'],
+        "title": expression['transcript'],
         "role": "statement",
         "rows": [1] * lines
     }
