@@ -1,7 +1,7 @@
 {% extends "varieties/base.html" %}
 {% load static %}
 {% block page_heading %}{% endblock %}
-{% block title %}Множества в дискретной математике{% endblock %}
+{% block title %}Дискретная математкиа{% endblock %}
 
 {% block js %}
     <script type="text/javascript" src="{% static 'varieties/main.js' %}"></script>
@@ -35,6 +35,11 @@
             <a class="nav-link" id="primality_test_tab" data-toggle="tab" href="#primality_test" role="tab"
                aria-controls="primality_test"
                aria-selected="true" data-operation="primality_test" data-operation-type="menu">Тест Соловея - Штрассена</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="bell_tab" data-toggle="tab" href="#bell" role="tab"
+               aria-controls="bell"
+               aria-selected="true" data-operation="bell" data-operation-type="menu">Числа Белла</a>
         </li>
     </ul>
 
@@ -217,6 +222,19 @@
                 <div class="task-input-group">
                     <div class="form-group user-inputs">
                         <input type="text" class="varieties-input" value="11">
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-output"></div>
+        </div>
+
+        <div id="bell" class="task-input tab-pane fade" role="tabpanel">
+            <div class="task-input">
+                <span>Количество элементов множества, n</span>
+                <div class="task-input-group">
+                    <div class="form-group user-inputs">
+                        <input type="text" class="varieties-input" value="3">
                     </div>
                 </div>
             </div>

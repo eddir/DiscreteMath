@@ -170,6 +170,35 @@ def primality_test(request) -> JsonResponse:
         })
 
 
+@csrf_exempt
+def bell(request) -> JsonResponse:
+    try:
+        n = int(json.loads(request.body)[0][0])
+        response = {
+            "bell": 0,
+            "stirling": [],
+            "n": n
+        }
+
+        for m in range(n + 1):
+            stirling = discrete.stirling(n, m)
+            response["bell"] += stirling
+            response["stirling"].append(stirling)
+
+        return JsonResponse({
+            "ok": True,
+            "message": "Success",
+            "data": response
+        }, safe=False)
+
+    except Exception as e:
+        return JsonResponse({
+            "ok": False,
+            "message": "Error: %s. %s" % (e, traceback.format_exc()),
+            "data": type(e).__name__
+        })
+
+
 def get_vars(expression):
     if not expression:
         return []

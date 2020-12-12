@@ -7,7 +7,8 @@ let multiplicityAmount = {
     "binary": 2,
     "properties": 4,
     "functions": 5,
-    "primality_test": 2
+    "primality_test": 2,
+    "bell": 1
 }
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -32,6 +33,9 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 parseFormula();
                 break;
             case 'primality_test':
+                activeOperation = "";
+                break;
+            case 'bell':
                 activeOperation = "";
                 break;
             default:
@@ -369,6 +373,13 @@ function show(response) {
                 content = "<p>Число простое с вероятностью " + response.data + "</p>";
             }
             $("#primality_test").find(".task-output").html(content);
+        } else if (activeTab === 'bell') {
+            content = "<p>Число Белла: " + response.data["bell"] + "</p>"
+
+            response.data["stirling"].forEach(function (s, m) {
+                content += "<p>S(" + response.data["n"] + ", " + m + "): " + s + "</p>"
+            })
+            $('#bell').find(".task-output").html(content);
         }
     } else {
         if (activeTab === 'primality_test' && response.data === "OverflowError") {
@@ -402,6 +413,9 @@ function getInputOperation() {
             break;
         case 'primality_test':
             inputs = $('#primality_test').find('.task-input-group > .user-inputs');
+            break;
+        case 'bell':
+            inputs = $('#bell').find('.task-input-group > .user-inputs');
             break;
         default:
             throw new Error("Not implemented");

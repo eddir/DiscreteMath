@@ -11,4 +11,5 @@ urlpatterns = [
     path('api/functions/<str:method>', api.properties),
     path('api/truth_table', api.truth_table),
     path('api/primality_test', api.primality_test),
+    path('api/bell', api.bell),
 ]

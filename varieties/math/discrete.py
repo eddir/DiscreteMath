@@ -1,3 +1,4 @@
+import math
 from pprint import pprint
 from random import randrange
 
@@ -315,3 +316,19 @@ def calculate_jacobian(a, n):
         return ans
 
     return 0
+
+
+def stirling(n: int, k: int):
+    s = 0
+
+    for j in range(k + 1):
+        s += ((-1) ** (k + j)) * binomial(k, j) * (j ** n)
+
+    return (1 / math.factorial(k)) * s
+
+
+def binomial(n, k):
+    if 0 <= k <= n:
+        return math.factorial(n) / (math.factorial(k) * math.factorial(n - k))
+    if k > n:
+        return 0
