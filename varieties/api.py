@@ -151,6 +151,25 @@ def truth_table(request) -> JsonResponse:
         })
 
 
+@csrf_exempt
+def primality_test(request) -> JsonResponse:
+    try:
+        data = json.loads(request.body)
+
+        return JsonResponse({
+            "ok": True,
+            "message": "Success",
+            "data": discrete.primality_test(int(data[0][0]), int(data[1][0]))
+        }, safe=False)
+
+    except Exception as e:
+        return JsonResponse({
+            "ok": False,
+            "message": "Error: %s. %s" % (e, traceback.format_exc()),
+            "data": type(e).__name__
+        })
+
+
 def get_vars(expression):
     if not expression:
         return []

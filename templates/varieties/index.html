@@ -31,6 +31,11 @@
                aria-controls="truth_table"
                aria-selected="true" data-operation="truth_table" data-operation-type="menu">Таблица истинности</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="primality_test_tab" data-toggle="tab" href="#primality_test" role="tab"
+               aria-controls="primality_test"
+               aria-selected="true" data-operation="primality_test" data-operation-type="menu">Тест Соловея - Штрассена</a>
+        </li>
     </ul>
 
     <div class="tab-content" id="tabContent">
@@ -191,6 +196,27 @@
                     <div class="form-group user-inputs">
                         <input type="text" id="formula" value="xnor(xor(x, and(y, not(z))), or(and(x, not(z)), y))">
                         <span id="formula_present" class="formula"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-output"></div>
+        </div>
+
+        <div id="primality_test" class="task-input tab-pane fade" role="tabpanel">
+            <div class="task-input">
+                <span>Тестируемое натуральное число</span>
+                <div class="task-input-group">
+                    <div class="form-group user-inputs">
+                        <input type="text" class="single-input" value="18181">
+                    </div>
+                </div>
+            </div>
+            <div class="task-input">
+                <span>Точность теста</span>
+                <div class="task-input-group">
+                    <div class="form-group user-inputs">
+                        <input type="text" class="varieties-input" value="11">
                     </div>
                 </div>
             </div>

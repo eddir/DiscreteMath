@@ -6,7 +6,8 @@ let truth_table_formula;
 let multiplicityAmount = {
     "binary": 2,
     "properties": 4,
-    "functions": 5
+    "functions": 5,
+    "primality_test": 2
 }
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -30,6 +31,11 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 activeOperation = "";
                 parseFormula();
                 break;
+            case 'primality_test':
+                activeOperation = "";
+                break;
+            default:
+                throw new Error("Not implemented");
         }
     }
     calculate();
@@ -353,10 +359,25 @@ function show(response) {
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
+        }  else if (activeTab === 'primality_test') {
+            let content = "";
+            if (response.data === 0) {
+                content = "<p class=''>Число составное</p>";
+            } else if (response.data === 1) {
+                content = "<p class=''>Число простое</p>";
+            } else {
+                content = "<p>Число простое с вероятностью " + response.data + "</p>";
+            }
+            $("#primality_test").find(".task-output").html(content);
         }
     } else {
-        alert(response.message);
-        console.log(response.message);
+        if (activeTab === 'primality_test' && response.data === "OverflowError") {
+            const content = '<p>Не удалось вычислить: <b>слишком большое число.</b></p>'
+            $("#primality_test").find(".task-output").html(content);
+        } else {
+            alert(response.message);
+            console.log(response.message);
+        }
     }
 }
 
@@ -378,6 +399,9 @@ function getInputOperation() {
             break;
         case 'functions':
             inputs = $('#functions').find('.task-input-group > .user-inputs');
+            break;
+        case 'primality_test':
+            inputs = $('#primality_test').find('.task-input-group > .user-inputs');
             break;
         default:
             throw new Error("Not implemented");
