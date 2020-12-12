@@ -1,3 +1,6 @@
+from pprint import pprint
+
+
 def union(variety1, variety2):
     variety3 = []
 
@@ -180,3 +183,54 @@ def logic_xnor(left, right):
 
 def logic_impl(left, right):
     return not left or right
+
+
+def functions(varieties):
+    description = {
+        "everywhere_definitely": True,
+        "simple": True,
+        "surjection": True,
+        "injection": True,
+        "bijection": False
+    }
+
+    for a in varieties[0]:
+        found = False
+        for f in varieties[2:]:
+            if f[0] == a:
+                found = True
+                break
+        if not found:
+            description['everywhere_definitely'] = False
+            break
+
+    for i in range(2, len(varieties)):
+        for j in range(2, len(varieties)):
+            if varieties[i] == varieties[j] and i != j:
+                description['simple'] = False
+                break
+        if not description['simple']:
+            break
+
+    for b in varieties[1]:
+        found = False
+        for f in varieties[2:]:
+            if f[1] == b:
+                found = True
+                break
+        if not found:
+            description['surjection'] = False
+            break
+
+    for b in varieties[1]:
+        found = 0
+        for f in varieties[2:]:
+            if f[1] == b:
+                found += 1
+        if found != 1:
+            description['injection'] = False
+            break
+            
+        description['bijection'] = description['injection'] and description['surjection']
+
+    return description

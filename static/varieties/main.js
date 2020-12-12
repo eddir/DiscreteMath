@@ -5,7 +5,8 @@ let truth_table_formula;
 
 let multiplicityAmount = {
     "binary": 2,
-    "properties": 4
+    "properties": 4,
+    "functions": 5
 }
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -21,6 +22,9 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 break;
             case 'properties':
                 activeOperation = "properties";
+                break;
+            case 'functions':
+                activeOperation = "functions";
                 break;
             case 'truth_table':
                 activeOperation = "";
@@ -78,15 +82,17 @@ function registerFocusOutEvent() {
                     multiplicityAmount[activeTab]--;
                 }
             }
-        } else if (activeTab === "properties") {
-            let inputs = $('#properties').find('.user-inputs');
+        } else if (activeTab === "properties" || activeTab === "functions") {
+            let inputs = $('#' + activeTab).find('.user-inputs');
             clearLines(inputs, multiplicityAmount[activeTab]);
 
             for (let p = 1; p < multiplicityAmount[activeTab]; p++) {
-                let o = $(inputs[p]).find("input");
-                if (o.length === 0) {
-                    $(inputs[p]).parent().remove();
-                    multiplicityAmount[activeTab]--;
+                if ($(inputs[p]).parent().children.length !== 1) {
+                    let o = $(inputs[p]).find("input");
+                    if (o.length === 0) {
+                        $(inputs[p]).remove();
+                        multiplicityAmount[activeTab]--;
+                    }
                 }
             }
         } else if (activeTab === "truth_table") {
@@ -284,6 +290,30 @@ function show(response) {
                 e.preventDefault();
                 e.stopPropagation();
             })
+        } else if (activeTab === "functions") {
+            const description = {
+                "everywhere_definitely": "Всюду определённо",
+                "simple": "Однозначно",
+                "surjection": "Сюръекция",
+                "injection": "Инъекция",
+                "bijection": "Биекция"
+            }
+
+            for (const [key, value] of Object.entries(response.data)) {
+                content += '<div class="form-group"><div class="form-check form-check-inline">\n' +
+                    '  <input class="form-check-input" type="checkbox"' + (value === true ? ' checked' : '') + '>\n' +
+                    '  <label class="form-check-label">' + description[key] + '</label>\n' +
+                    '</div></div>'
+            }
+
+            $('#functions').find('.task-output').html(content);
+
+            let checkboxes = $('input[type="checkbox"]');
+            checkboxes.off("click");
+            checkboxes.click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            })
         } else if (activeTab === "truth_table") {
             let data = response.data.table.sort(function (a, b) {
                 return a["title"].length < b["title"].length ? -1 : 1;
@@ -339,10 +369,18 @@ function getInputOperation() {
     const multiplicity = [...Array(multiplicityAmount[activeTab])].map(x => []);
     let inputs, tabsCount;
 
-    if (activeTab === 'binary') {
-        inputs = $('#binary_relationships').find('.task-input-group > .user-inputs');
-    } else if (activeTab === 'properties') {
-        inputs = $('#properties').find('.task-input-group > .user-inputs');
+    switch (activeTab) {
+        case 'binary':
+            inputs = $('#binary_relationships').find('.task-input-group > .user-inputs');
+            break;
+        case 'properties':
+            inputs = $('#properties').find('.task-input-group > .user-inputs');
+            break;
+        case 'functions':
+            inputs = $('#functions').find('.task-input-group > .user-inputs');
+            break;
+        default:
+            throw new Error("Not implemented");
     }
     tabsCount = multiplicityAmount[activeTab];
 

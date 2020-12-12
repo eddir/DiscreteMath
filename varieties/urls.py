@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('api/binary/<str:method>', api.binary),
     path('api/properties/<str:method>', api.properties),
+    path('api/functions/<str:method>', api.properties),
     path('api/truth_table', api.truth_table),
 ]
